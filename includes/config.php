@@ -19,7 +19,7 @@ define('DB_CHARSET', 'utf8mb4');
 // Aplikasi
 define('APP_NAME', 'ERP Pemerintahan Daerah Jember');
 define('APP_VERSION', '1.0.0');
-define('APP_URL', 'http://localhost/comp/erppemda');
+define('APP_URL', 'http://localhost/erppemda');
 define('BASE_PATH', dirname(__DIR__));
 
 // Upload
