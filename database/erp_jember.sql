@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2026 at 03:53 PM
+-- Generation Time: Aug 06, 2026 at 12:21 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,8 +57,8 @@ CREATE TABLE `tbl_audit_log` (
   `aksi` varchar(50) NOT NULL,
   `tabel` varchar(50) NOT NULL,
   `record_id` int(11) DEFAULT NULL,
-  `data_lama` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`data_lama`)),
-  `data_baru` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`data_baru`)),
+  `data_lama` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `data_baru` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `ip_address` varchar(45) DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -119,7 +119,8 @@ INSERT INTO `tbl_audit_log` (`id`, `user_id`, `aksi`, `tabel`, `record_id`, `dat
 (49, 1, 'DELETE', 'tbl_puskesmas', 6, NULL, NULL, '::1', '2026-08-05 12:42:36'),
 (50, 1, 'DELETE', 'tbl_puskesmas', 5, NULL, NULL, '::1', '2026-08-05 12:44:21'),
 (51, 1, 'LOGIN', 'tbl_users', 1, NULL, NULL, '::1', '2026-08-05 13:40:33'),
-(52, 1, 'LOGIN', 'tbl_users', 1, NULL, NULL, '::1', '2026-08-05 13:53:18');
+(52, 1, 'LOGIN', 'tbl_users', 1, NULL, NULL, '::1', '2026-08-05 13:53:18'),
+(53, 1, 'LOGIN', 'tbl_users', 1, NULL, NULL, '::1', '2026-08-05 22:13:39');
 
 -- --------------------------------------------------------
 
@@ -161,7 +162,7 @@ CREATE TABLE `tbl_bps_data` (
   `id` int(11) NOT NULL,
   `kode_wilayah` varchar(20) NOT NULL,
   `nama_wilayah` varchar(100) DEFAULT NULL,
-  `data_statistik` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`data_statistik`)),
+  `data_statistik` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `tahun` int(11) DEFAULT NULL,
   `sumber` varchar(100) DEFAULT 'BPS',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -173,11 +174,7 @@ CREATE TABLE `tbl_bps_data` (
 
 INSERT INTO `tbl_bps_data` (`id`, `kode_wilayah`, `nama_wilayah`, `data_statistik`, `tahun`, `sumber`, `created_at`) VALUES
 (1, '35.09.01', 'Kecamatan Ajung', '{\"jumlah_penduduk\":45000,\"luas\":25.5,\"pendidikan\":\"78%\",\"kesehatan\":\"85%\"}', 2026, 'BPS', '2026-08-05 11:27:01'),
-(2, '35.09.02', 'Kecamatan Ambulu', '{\"jumlah_penduduk\":52000,\"luas\":30.2,\"pendidikan\":\"75%\",\"kesehatan\":\"82%\"}', 2026, 'BPS', '2026-08-05 11:27:01'),
-(3, '35.09.01', 'Kecamatan Ajung', '{\"jumlah_penduduk\":45000,\"luas\":25.5,\"pendidikan\":\"78%\",\"kesehatan\":\"85%\"}', 2026, 'BPS', '2026-08-05 11:27:09'),
-(4, '35.09.02', 'Kecamatan Ambulu', '{\"jumlah_penduduk\":52000,\"luas\":30.2,\"pendidikan\":\"75%\",\"kesehatan\":\"82%\"}', 2026, 'BPS', '2026-08-05 11:27:09'),
-(5, '35.09.01', 'Kecamatan Ajung', '{\"jumlah_penduduk\":45000,\"luas\":25.5,\"pendidikan\":\"78%\",\"kesehatan\":\"85%\"}', 2026, 'BPS', '2026-08-05 12:21:23'),
-(6, '35.09.02', 'Kecamatan Ambulu', '{\"jumlah_penduduk\":52000,\"luas\":30.2,\"pendidikan\":\"75%\",\"kesehatan\":\"82%\"}', 2026, 'BPS', '2026-08-05 12:21:23');
+(2, '35.09.02', 'Kecamatan Ambulu', '{\"jumlah_penduduk\":52000,\"luas\":30.2,\"pendidikan\":\"75%\",\"kesehatan\":\"82%\"}', 2026, 'BPS', '2026-08-05 11:27:01');
 
 -- --------------------------------------------------------
 
@@ -230,11 +227,8 @@ INSERT INTO `tbl_desa` (`id`, `kecamatan_id`, `nama_desa`, `kode_desa`, `jumlah_
 (26, 4, 'Sukorejo', '034', 13, 4, NULL, NULL, '2026-08-05 04:55:08'),
 (27, 4, 'Tegalwangi', '035', 17, 5, NULL, NULL, '2026-08-05 04:55:08'),
 (28, 4, 'Tugusari', '036', 19, 5, NULL, NULL, '2026-08-05 04:55:08'),
-(29, 1, 'Ajung', '010001', 15, 5, -8.155300, 113.645500, '2026-08-05 12:13:57'),
 (30, 1, 'Bandungsari', '010002', 12, 4, -8.160000, 113.650000, '2026-08-05 12:13:57'),
-(31, 2, 'Ambulu', '020001', 18, 6, -8.345300, 113.605500, '2026-08-05 12:13:57'),
-(32, 2, 'Tanjungrejo', '020002', 10, 3, -8.350000, 113.610000, '2026-08-05 12:13:57'),
-(33, 4, 'Bangsalsari', '040001', 20, 7, -8.195300, 113.705500, '2026-08-05 12:13:57'),
+(32, 2, 'Tanjungsari', '020002', 10, 3, -8.350000, 113.610000, '2026-08-05 12:13:57'),
 (34, 4, 'Tegalgede', '040002', 14, 5, -8.200000, 113.710000, '2026-08-05 12:13:57'),
 (35, 10, 'Kaliwates', '100001', 25, 8, -8.165300, 113.665500, '2026-08-05 12:13:57'),
 (36, 10, 'Sempusari', '100002', 16, 5, -8.170000, 113.670000, '2026-08-05 12:13:57'),
@@ -264,8 +258,8 @@ INSERT INTO `tbl_desa` (`id`, `kecamatan_id`, `nama_desa`, `kode_desa`, `jumlah_
 CREATE TABLE `tbl_desa_data` (
   `id` int(11) NOT NULL,
   `desa_id` int(11) NOT NULL,
-  `data_warga` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`data_warga`)),
-  `data_infrastruktur` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`data_infrastruktur`)),
+  `data_warga` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `data_infrastruktur` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `last_sync` datetime DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -751,7 +745,7 @@ CREATE TABLE `tbl_rumah_sakit` (
 --
 
 INSERT INTO `tbl_rumah_sakit` (`id`, `nama_rs`, `alamat`, `tipe`, `telepon`, `latitude`, `longitude`, `kapasitas`, `status`, `created_at`) VALUES
-(1, 'RSUD dr. H. Soedirman', 'Jl. dr. Soebandar No. 2, Kebonsari', 'RSUD', '(0331) 488128', -8.168000, 113.665000, 300, 'Non-aktif', '2026-08-05 12:38:31'),
+(1, 'RSUD dr. H. Soedirman', 'Jl. dr. Soebandar No. 2, Kebonsari', 'RSUD', '(0331) 488128', -8.168000, 113.665000, 300, 'Aktif', '2026-08-05 12:38:31'),
 (2, 'RS.BP. Ketenagakerjaan', 'Jl. Diponegoro No. 18, Kaliwates', 'RS Swasta', '(0331) 488333', -8.165000, 113.670000, 150, 'Aktif', '2026-08-05 12:38:31'),
 (3, 'RSIA Permata Bunda', 'Jl. Sultan Agung No. 30, Kaliwates', 'RS Swasta', '(0331) 488789', -8.167000, 113.672000, 80, 'Aktif', '2026-08-05 12:38:31');
 
@@ -765,7 +759,7 @@ CREATE TABLE `tbl_siak_data` (
   `id` int(11) NOT NULL,
   `nik` varchar(16) NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
-  `data_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`data_json`)),
+  `data_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `terakhir_sinkron` datetime DEFAULT NULL,
   `status` enum('Valid','Invalid','Pending') DEFAULT 'Pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -776,60 +770,9 @@ CREATE TABLE `tbl_siak_data` (
 --
 
 INSERT INTO `tbl_siak_data` (`id`, `nik`, `nama`, `data_json`, `terakhir_sinkron`, `status`, `created_at`) VALUES
-(1, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 17:59:15', 'Valid', '2026-08-05 10:59:15'),
-(2, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 17:59:15', 'Valid', '2026-08-05 10:59:15'),
-(3, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 17:59:15', 'Valid', '2026-08-05 10:59:15'),
-(4, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:26:56', 'Valid', '2026-08-05 11:26:56'),
-(5, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:26:56', 'Valid', '2026-08-05 11:26:56'),
-(6, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:26:56', 'Valid', '2026-08-05 11:26:56'),
-(7, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:26:59', 'Valid', '2026-08-05 11:26:59'),
-(8, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:26:59', 'Valid', '2026-08-05 11:26:59'),
-(9, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:26:59', 'Valid', '2026-08-05 11:26:59'),
-(10, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:00', 'Valid', '2026-08-05 11:27:00'),
-(11, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:00', 'Valid', '2026-08-05 11:27:00'),
-(12, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:00', 'Valid', '2026-08-05 11:27:00'),
-(13, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:00', 'Valid', '2026-08-05 11:27:00'),
-(14, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:00', 'Valid', '2026-08-05 11:27:00'),
-(15, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:00', 'Valid', '2026-08-05 11:27:00'),
-(16, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:13', 'Valid', '2026-08-05 11:27:13'),
-(17, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:14', 'Valid', '2026-08-05 11:27:14'),
-(18, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:14', 'Valid', '2026-08-05 11:27:14'),
-(19, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:15', 'Valid', '2026-08-05 11:27:15'),
-(20, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:15', 'Valid', '2026-08-05 11:27:15'),
-(21, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:15', 'Valid', '2026-08-05 11:27:15'),
-(22, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:15', 'Valid', '2026-08-05 11:27:15'),
-(23, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:15', 'Valid', '2026-08-05 11:27:15'),
-(24, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:15', 'Valid', '2026-08-05 11:27:15'),
-(25, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:16', 'Valid', '2026-08-05 11:27:16'),
-(26, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:16', 'Valid', '2026-08-05 11:27:16'),
-(27, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:16', 'Valid', '2026-08-05 11:27:16'),
-(28, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:16', 'Valid', '2026-08-05 11:27:16'),
-(29, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:16', 'Valid', '2026-08-05 11:27:16'),
-(30, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:16', 'Valid', '2026-08-05 11:27:16'),
-(31, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:16', 'Valid', '2026-08-05 11:27:16'),
-(32, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:16', 'Valid', '2026-08-05 11:27:16'),
-(33, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:16', 'Valid', '2026-08-05 11:27:16'),
-(34, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:17', 'Valid', '2026-08-05 11:27:17'),
-(35, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:17', 'Valid', '2026-08-05 11:27:17'),
-(36, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:17', 'Valid', '2026-08-05 11:27:17'),
-(37, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:17', 'Valid', '2026-08-05 11:27:17'),
-(38, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:17', 'Valid', '2026-08-05 11:27:17'),
-(39, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:17', 'Valid', '2026-08-05 11:27:17'),
-(40, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:17', 'Valid', '2026-08-05 11:27:17'),
-(41, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:27:17', 'Valid', '2026-08-05 11:27:17'),
-(42, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:27:17', 'Valid', '2026-08-05 11:27:17'),
-(43, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:57:04', 'Valid', '2026-08-05 11:57:04'),
-(44, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 18:57:04', 'Valid', '2026-08-05 11:57:04'),
-(45, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 18:57:04', 'Valid', '2026-08-05 11:57:04'),
-(46, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 19:21:17', 'Valid', '2026-08-05 12:21:17'),
-(47, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 19:21:17', 'Valid', '2026-08-05 12:21:17'),
-(48, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 19:21:17', 'Valid', '2026-08-05 12:21:17'),
-(49, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 19:21:18', 'Valid', '2026-08-05 12:21:18'),
-(50, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 19:21:18', 'Valid', '2026-08-05 12:21:18'),
-(51, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 19:21:18', 'Valid', '2026-08-05 12:21:18'),
-(52, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 19:30:34', 'Valid', '2026-08-05 12:30:34'),
-(53, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 19:30:34', 'Valid', '2026-08-05 12:30:34'),
-(54, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 19:30:34', 'Valid', '2026-08-05 12:30:34');
+(1, '3509010101010001', 'Budi Santoso', '{\"alamat\":\"Jl. Merdeka No. 1\",\"ttl\":\"1985-01-01\",\"jk\":\"Laki-laki\"}', '2026-08-05 19:30:34', 'Valid', '2026-08-05 10:59:15'),
+(2, '3509010101010002', 'Siti Rahayu', '{\"alamat\":\"Jl. Sudirman No. 5\",\"ttl\":\"1990-05-15\",\"jk\":\"Perempuan\"}', '2026-08-05 19:30:34', 'Valid', '2026-08-05 10:59:15'),
+(3, '3509010101010003', 'Ahmad Hidayat', '{\"alamat\":\"Jl. Pahlawan No. 10\",\"ttl\":\"1988-03-20\",\"jk\":\"Laki-laki\"}', '2026-08-05 19:30:34', 'Valid', '2026-08-05 10:59:15');
 
 -- --------------------------------------------------------
 
@@ -941,7 +884,7 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id`, `username`, `password_hash`, `nama_lengkap`, `email`, `no_hp`, `role_id`, `foto`, `status`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '$2y$10$F/sYSj0r2ohXx8U1GPcXE.gW44mZGo5SSNlPtubnhhwUAZ1KerQb.', 'Administrator', 'admin@jember.go.id', NULL, 1, '6a7320b420012.png', 1, '2026-08-05 20:53:18', '2026-08-05 04:54:50', '2026-08-05 13:53:18');
+(1, 'admin', '$2y$10$F/sYSj0r2ohXx8U1GPcXE.gW44mZGo5SSNlPtubnhhwUAZ1KerQb.', 'Administrator', 'admin@jember.go.id', NULL, 1, '6a7320b420012.png', 1, '2026-08-06 05:13:39', '2026-08-05 04:54:50', '2026-08-05 22:13:39');
 
 -- --------------------------------------------------------
 
@@ -1248,7 +1191,7 @@ ALTER TABLE `tbl_about`
 -- AUTO_INCREMENT for table `tbl_audit_log`
 --
 ALTER TABLE `tbl_audit_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `tbl_bantuan_kesehatan`
@@ -1260,7 +1203,7 @@ ALTER TABLE `tbl_bantuan_kesehatan`
 -- AUTO_INCREMENT for table `tbl_bps_data`
 --
 ALTER TABLE `tbl_bps_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_desa`
@@ -1368,7 +1311,7 @@ ALTER TABLE `tbl_rumah_sakit`
 -- AUTO_INCREMENT for table `tbl_siak_data`
 --
 ALTER TABLE `tbl_siak_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_stok_obat`
